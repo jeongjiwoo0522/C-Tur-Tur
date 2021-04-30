@@ -3,7 +3,7 @@
 #include <conio.h>
 #include <iostream>
 
-enum class KeyType {
+enum class KeyInputType {
     LEFT = 75,
     RIGHT = 77,
     UP = 72,
@@ -26,11 +26,11 @@ public:
             ch = _getche();
             if (ch == 0xE0 || ch == 0){
                 ch = _getch();
-                switch ((KeyType)ch) {
-                case KeyType::LEFT:
+                switch ((KeyInputType)ch) {
+                case KeyInputType::LEFT:
                     std::cout << "Left";
                     break;
-                case KeyType::RIGHT:
+                case KeyInputType::RIGHT:
                     std::cout << "Right";
                     break;
                 default:

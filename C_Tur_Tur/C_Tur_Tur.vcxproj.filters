@@ -18,10 +18,10 @@
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="src\keyboard_event_listener.cpp">
+    <ClCompile Include="src\cturtur_builder.h">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="src\cturtur_builder.cpp">
+    <ClCompile Include="src\keyboard_event_listener.h">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

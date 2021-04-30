@@ -1,39 +1,24 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include "lib/CTurtle.hpp"
-#include "src/keyboard_event_listener.cpp"
-
-using namespace cturtle;
+#include "src/keyboard_event_listener.h"
+#include "src/cturtur_builder.h"
 
 KeyboardEventListener* KeyboardEventListener::_instance = 0;
 
+cturtle::Turtle* createTurtle(CTurTurBuilder* builder, cturtle::TurtleScreen* scr, cturtle::Turtle* turtle, std::string turtle_shape) {
+    builder->BuildScreen(scr);
+    builder->BuildTurtle(turtle);
+    builder->BuildShape(turtle_shape);
+    return builder->Build();
+}
+
 int main() {
-    KeyboardEventListener* k = KeyboardEventListener::getInstance();
-    char ch;
-    while (1) {
-        if (k->GetProcessKey()) {
-            std::cout << std::endl;
-        }
-    }
+        KeyboardEventListener* k = KeyboardEventListener::getInstance();
 
-    TurtleScreen scr;
-    Turtle turtle(scr);
+        CTurTurBuilder* builder = new TestCTurTurBuilder;
 
-    turtle.shape("square");
-    turtle.speed(TS_SLOWEST);
-    turtle.fillcolor({ "purple" });
-    turtle.begin_fill();
-
-    for (int i = 0; i < 4; i++) {
-        turtle.forward(50);
-        turtle.right(90);
-    }
-
-    turtle.end_fill();
-    while (1) {
-        
-    }
-    scr.bye();
+        cturtle::Turtle* newTurtle = createTurtle(builder, nullptr, nullptr, "test_shape");
 
     return 0;
 }
