@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\cturtur_builder.cpp" />
     <ClCompile Include="src\keyboard_event_listener.cpp" />
   </ItemGroup>
   <ItemGroup>
