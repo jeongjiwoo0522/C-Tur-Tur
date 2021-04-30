@@ -18,6 +18,14 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\keyboard_event_listener.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lib\CImg.h" />
+    <ClInclude Include="lib\CTurtle.hpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{c6cd4b7a-c1fa-4fe9-b6f2-41097eadda77}</ProjectGuid>
@@ -137,13 +145,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="headerfile\CImg.h" />
-    <ClInclude Include="headerfile\CTurtle.hpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

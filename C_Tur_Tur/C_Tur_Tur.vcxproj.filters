@@ -18,12 +18,15 @@
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="src\keyboard_event_listener.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="headerfile\CImg.h">
+    <ClInclude Include="lib\CImg.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="headerfile\CTurtle.hpp">
+    <ClInclude Include="lib\CTurtle.hpp">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
