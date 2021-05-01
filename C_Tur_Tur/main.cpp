@@ -56,31 +56,42 @@ public:
     virtual void Down() = 0;
 };
 
-class TestCTurTurMover : CTurTurMover {
+class StandardCTurTurMover : public CTurTurMover {
 public:
+    StandardCTurTurMover(cturtle::Turtle* t) {
+        this->t = t;
+    }
+
     void Left() override {
-        std::cout << "left";
+        std::cout << "Left";
+        this->t->left(10);
     }
 
     void Right() override {
-        std::cout << "right";
+        std::cout << "Right";
+        this->t->right(10);
     }
 
     void Up() override {
-        std::cout << "up";
+        std::cout << "Up";
+        this->t->forward(10);
     }
 
     void Down() override {
-        std::cout << "down";
+        std::cout << "Down";
+        this->t->back(10);
     }
+
+private:
+    cturtle::Turtle* t;
 };
 
 int main() {
-    KeyboardEventListener* k = KeyboardEventListener::getInstance();
-    TestCTurTurMover mover;
-
     cturtle::TurtleScreen scr;
     cturtle::Turtle turtle(scr);
+
+    KeyboardEventListener* k = KeyboardEventListener::getInstance();
+    StandardCTurTurMover mover(&turtle);
 
     turtle.speed(cturtle::TS_SLOWEST);
     turtle.fillcolor({ "purple" });
@@ -98,7 +109,6 @@ int main() {
             break;
         case KeyInputType::UP:
             mover.Up();
-            turtle.forward(10);
             break;
         case KeyInputType::DOWN:
             mover.Down();
