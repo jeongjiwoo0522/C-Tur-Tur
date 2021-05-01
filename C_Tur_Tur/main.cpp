@@ -22,38 +22,20 @@ public:
         return _instance;
     }
 
-    bool GetProcessKey(cturtle::Turtle* t) {
+    KeyInputType GetProcessKey() {
         int ch;
         if (_kbhit()) {
             ch = _getch();
             if (ch == 0xE0 || ch == 0) {
                 ch = _getch();
-                switch ((KeyInputType)ch) {
-                case KeyInputType::LEFT:
-                    std::cout << "Left";
-                    t->left(10);
-                    break;
-                case KeyInputType::RIGHT:
-                    std::cout << "Right";
-                    t->right(10);
-                    break;
-                case KeyInputType::UP:
-                    std::cout << "UP";
-                    t->forward(10);
-                    break;
-                case KeyInputType::DOWN:
-                    t->back(10);
-                    break;
-                case KeyInputType::ESC:
-                    exit(1);
-                default:
-                    return false;
-                }
-                return true;
+                return static_cast<KeyInputType>(ch);
             }
             else {
-                return false;
+                return KeyInputType::OtherKey;
             }
+        } 
+        else {
+            return KeyInputType::OtherKey;
         }
     }
 
@@ -72,15 +54,36 @@ int main() {
     cturtle::TurtleScreen scr;
     cturtle::Turtle turtle(scr);
 
-    //turtle.shape("square");
     turtle.speed(cturtle::TS_SLOWEST);
     turtle.fillcolor({ "purple" });
     turtle.begin_fill();
 
     while (1) {
-        if (k->GetProcessKey(&turtle)) {
-            std::cout << std::endl;
+        KeyInputType keyInput = k->GetProcessKey();
+
+        switch (keyInput) {
+        case KeyInputType::LEFT:
+            std::cout << "Left";
+            turtle.left(10);
+            break;
+        case KeyInputType::RIGHT:
+            std::cout << "Right";
+            turtle.right(10);
+            break;
+        case KeyInputType::UP:
+            std::cout << "UP";
+            turtle.forward(10);
+            break;
+        case KeyInputType::DOWN:
+            turtle.back(10);
+            break;
+        case KeyInputType::ESC:
+            exit(1);
+        default:
+            continue;
         }
+
+        std::cout << std::endl;
     }
 
     turtle.end_fill();
