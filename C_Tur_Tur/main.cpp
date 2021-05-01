@@ -48,8 +48,36 @@ private:
 
 KeyboardEventListener* KeyboardEventListener::_instance = 0;
 
+class CTurTurMover {
+public:
+    virtual void Left() = 0;
+    virtual void Right() = 0;
+    virtual void Up() = 0;
+    virtual void Down() = 0;
+};
+
+class TestCTurTurMover : CTurTurMover {
+public:
+    void Left() override {
+        std::cout << "left";
+    }
+
+    void Right() override {
+        std::cout << "right";
+    }
+
+    void Up() override {
+        std::cout << "up";
+    }
+
+    void Down() override {
+        std::cout << "down";
+    }
+};
+
 int main() {
     KeyboardEventListener* k = KeyboardEventListener::getInstance();
+    TestCTurTurMover mover;
 
     cturtle::TurtleScreen scr;
     cturtle::Turtle turtle(scr);
@@ -63,19 +91,17 @@ int main() {
 
         switch (keyInput) {
         case KeyInputType::LEFT:
-            std::cout << "Left";
-            turtle.left(10);
+            mover.Left();
             break;
         case KeyInputType::RIGHT:
-            std::cout << "Right";
-            turtle.right(10);
+            mover.Right();
             break;
         case KeyInputType::UP:
-            std::cout << "UP";
+            mover.Up();
             turtle.forward(10);
             break;
         case KeyInputType::DOWN:
-            turtle.back(10);
+            mover.Down();
             break;
         case KeyInputType::ESC:
             exit(1);
