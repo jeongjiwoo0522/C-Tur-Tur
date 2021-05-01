@@ -86,12 +86,44 @@ private:
     cturtle::Turtle* t;
 };
 
+class FastCTurTurMover : public CTurTurMover {
+public:
+    FastCTurTurMover(cturtle::Turtle* t) {
+        this->t = t;
+    }
+
+    void Left() override {
+        std::cout << "Left";
+        this->t->left(50);
+    }
+
+    void Right() override {
+        std::cout << "Right";
+        this->t->right(50);
+    }
+
+    void Up() override {
+        std::cout << "Up";
+        this->t->forward(50);
+    }
+
+    void Down() override {
+        std::cout << "Down";
+        this->t->back(50);
+    }
+
+private:
+    cturtle::Turtle* t;
+};
+
 int main() {
     cturtle::TurtleScreen scr;
     cturtle::Turtle turtle(scr);
 
     KeyboardEventListener* k = KeyboardEventListener::getInstance();
-    StandardCTurTurMover mover(&turtle);
+
+    FastCTurTurMover f_mover(&turtle);
+    CTurTurMover* mover = &f_mover;
 
     turtle.speed(cturtle::TS_SLOWEST);
     turtle.fillcolor({ "purple" });
@@ -102,16 +134,16 @@ int main() {
 
         switch (keyInput) {
         case KeyInputType::LEFT:
-            mover.Left();
+            mover->Left();
             break;
         case KeyInputType::RIGHT:
-            mover.Right();
+            mover->Right();
             break;
         case KeyInputType::UP:
-            mover.Up();
+            mover->Up();
             break;
         case KeyInputType::DOWN:
-            mover.Down();
+            mover->Down();
             break;
         case KeyInputType::ESC:
             exit(1);
